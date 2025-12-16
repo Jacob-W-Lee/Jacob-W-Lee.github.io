@@ -1,111 +1,438 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jacob W. Lee | Personal Website</title>
-  <meta name="description" content="Personal website and portfolio" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jacob W. Lee | Robotics & Mechanical Engineering</title>
+  <meta name="description" content="Jacob W. Lee — Mechanical engineering student focused on robotics, humanoid systems, and bipedal/balance control." />
+
+  <!-- Open Graph (replace image URL with your hero/profile image) -->
+  <meta property="og:title" content="Jacob W. Lee | Robotics & Mechanical Engineering" />
+  <meta property="og:description" content="Mechanical engineering student focused on robotics, humanoid systems, and bipedal locomotion." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://example.com/profile-image.png" />
+
+  <!-- Favicon (replace with your favicon file) -->
+  <link rel="icon" href="favicon.png" />
 
   <style>
-    :root {
+    :root{
       --bg: #0f172a;
+      --card: rgba(255,255,255,0.02);
       --fg: #e5e7eb;
-      --accent: #38bdf8;
       --muted: #94a3b8;
+      --accent: #38bdf8;
+      --glass-border: rgba(255,255,255,0.05);
+      --max-width: 980px;
+      --accent-2: #60a5fa;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071028 0%, var(--bg) 100%);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:2.25rem;
+      line-height:1.65;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
+    main{
+      width:100%;
+      max-width:var(--max-width);
+      padding:2rem;
+      background:var(--card);
+      border-radius:14px;
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
     }
 
-    main {
-      max-width: 720px;
-      width: 100%;
+    .wrap{
+      display:flex;
+      gap:2rem;
+      align-items:flex-start;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    .profile {
+      width:220px;
+      min-width:220px;
     }
 
-    h2 {
-      font-size: 1.25rem;
-      color: var(--muted);
-      font-weight: 400;
-      margin-bottom: 1.5rem;
+    .avatar{
+      width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.04);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:block;
     }
 
-    p {
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-      color: #cbd5f5;
+    .avatar img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
+    .content{
+      flex:1;
+      min-width:0;
     }
 
-    a:hover {
-      text-decoration: underline;
+    h1{
+      font-size:2.2rem;
+      margin:0 0 .25rem 0;
+      letter-spacing:-0.5px;
+      text-shadow: 0 0 18px rgba(56,189,248,0.10);
     }
+
+    h2{
+      margin:0 0 1rem 0;
+      font-size:1.02rem;
+      color:var(--muted);
+      font-weight:400;
+    }
+
+    p.lead{
+      margin:0 0 1rem 0;
+      color:#cbd5f5;
+      max-width:70ch;
+    }
+
+    .meta{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      margin-top:1rem;
+      flex-wrap:wrap;
+    }
+
+    a.btn{
+      display:inline-flex;
+      gap:.6rem;
+      align-items:center;
+      padding:.45rem .75rem;
+      border-radius:10px;
+      font-weight:600;
+      text-decoration:none;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--accent);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+
+    a.btn:active{ transform: translateY(1px); }
+    a.btn:hover{ opacity:0.95; box-shadow: 0 6px 18px rgba(56,189,248,0.06); }
+
+    a.textlink{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:500;
+      display:inline-flex;
+      gap:.5rem;
+      align-items:center;
+    }
+    a.textlink:hover{ text-decoration:underline; opacity:0.95; }
 
     .links {
-      display: flex;
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
+      display:flex;
+      gap:0.6rem;
+      align-items:center;
+      margin-top:.6rem;
+      flex-wrap:wrap;
     }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: var(--muted);
+    .icon-btn{
+      display:inline-grid;
+      place-items:center;
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,0.03);
+      background:transparent;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .icon-btn:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.01); }
+
+    /* Section spacing */
+    .section {
+      margin-top:1.25rem;
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Research */
+    .research-list{
+      display:grid;
+      gap:.9rem;
+      margin-top:.5rem;
+    }
+    .research-item{
+      padding:.75rem;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.005), rgba(255,255,255,0.01));
+    }
+    .research-item a{ color:var(--accent); font-weight:600; text-decoration:none; }
+    .research-item p{ margin:.4rem 0 0 0; color:#dbe7ff; font-size:.95rem; }
+
+    /* Projects */
+    .projects{
+      margin-top:1rem;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:1rem 1.5rem;
+    }
+
+    .proj-col{
+      background: linear-gradient(180deg, rgba(255,255,255,0.006), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:0.9rem;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .proj-col h3{
+      margin:0 0 .6rem 0;
+      font-size:1rem;
+      color:var(--accent-2);
+    }
+
+    .project {
+      margin-bottom:.75rem;
+      padding-bottom:.6rem;
+      border-bottom:1px dashed rgba(255,255,255,0.02);
+    }
+    .project:last-child{ border-bottom:none; margin-bottom:0; padding-bottom:0; }
+
+    .project a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .project p{
+      margin:.35rem 0 0 0;
+      color:#dbe7ff;
+      font-size:0.95rem;
+    }
+
+    .tags{
+      margin-top:.4rem;
+      display:flex;
+      gap:.4rem;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      font-size:0.78rem;
+      color:var(--muted);
+      background:rgba(255,255,255,0.01);
+      padding:.18rem .45rem;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    footer{
+      margin-top:1.25rem;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    @media (max-width:980px){
+      .projects{ grid-template-columns: 1fr; }
+      .wrap{ flex-direction:column; gap:1rem; }
+      .profile{ width:100%; min-width:0; order:-1; }
+    }
+
+    @media (max-width:460px){
+      body{ padding:1rem }
+      main{ padding:1rem }
+    }
+
+    .muted{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .sr-only{
+      position:absolute!important;
+      height:1px; width:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>Jacob W. Lee</h1>
-    <h2>Mechanical Engineering · Robotics · Software</h2>
+    <div class="wrap">
+      <div class="profile" aria-label="Profile column">
+        <div class="avatar" role="img" aria-label="Profile photo of Jacob W. Lee">
+          <!-- Replace with your photo -->
+          <img src="https://example.com/profile-image.png" alt="Jacob W. Lee — profile photo" />
+        </div>
 
-    <p>
-      I’m a mechanical engineering student with interests in robotics,
-      humanoid systems, and control.
-    </p>
+        <div style="margin-top:0.75rem; display:flex; gap:.5rem; align-items:center;">
+          <a class="icon-btn" href="https://github.com/Jacob-W-Lee" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <!-- GitHub icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C7.6 2 4 5.6 4 10c0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4v-1.4c-2.2.5-2.6-1-2.6-1-.4-1-1-1.3-1-1.3-.8-.6.1-.6.1-.6.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.3-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.2-.1-.2-.4-1.2.1-2.6 0 0 .6-.2 2 .8.6-.2 1.2-.3 1.8-.3s1.2.1 1.8.3c1.4-1 2-0.8 2-0.8.5 1.4.2 2.4.1 2.6.5.6.8 1.3.8 2.2 0 3.1-1.8 3.8-3.6 4 .3.3.6.9.6 1.9v2.8c0 .2.1.5.5.4C17.7 16.5 20 13.5 20 10c0-4.4-3.6-8-8-8z" fill="currentColor"/>
+            </svg>
+          </a>
 
-    <p>
-      Currently focused on robotics, and bipedal locomotion.
-    </p>
+          <a class="icon-btn" href="https://www.linkedin.com/in/jacob-lee-973a761/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <!-- LinkedIn icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.98 3.5A2.5 2.5 0 1 0 4.98 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.8 0 4.5 2.4 4.5 5.5V21h-4v-5.2c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
 
-    <div class="links">
-      <a href="mailto:jacob.w.lee@duke.edu">Email</a>
-      <!-- <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/yourusername/" target="_blank">LinkedIn</a> -->
-      <!-- <a href="resume.pdf" target="_blank">Resume</a> -->
+      <div class="content">
+        <h1>Jacob W. Lee</h1>
+        <h2>Mechanical Engineering · Robotics · Software</h2>
+
+        <p class="lead">
+          I'm a mechanical engineering student focused on robotics, humanoid systems,
+          and bipedal locomotion. I build control systems, prototype mechanisms, and write
+          software for perception & actuation.
+        </p>
+
+        <div class="meta" role="navigation" aria-label="Quick links">
+          <a class="btn" href="mailto:jacob.w.lee@duke.edu" aria-label="Email Jacob">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8.75V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 6.5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V8l9 6 9-6V6.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Email
+          </a>
+
+          <a class="textlink" href="resume.pdf" target="_blank" rel="noopener noreferrer">View résumé</a>
+        </div>
+
+        <!-- Research section (placed above Projects per Option A) -->
+        <section class="section" aria-labelledby="research-heading">
+          <h2 id="research-heading">Research</h2>
+
+          <div class="research-list" role="list">
+            <div class="research-item" role="listitem">
+              <a href="http://www.generalroboticslab.com/blogs/blog/2024-09-29-dukehumanoidv1/index.html" target="_blank" rel="noopener noreferrer">
+                Duke Humanoid V1 — General Robotics Lab blog
+              </a>
+              <p>
+                Lab blog post describing the Duke Humanoid V1 research platform (blog post, Sept 29, 2024).
+                Includes design overview and early experimental notes.
+              </p>
+            </div>
+
+            <!-- Add more research items here as needed -->
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" aria-labelledby="projects-heading">
+          <h2 id="projects-heading">Projects</h2>
+
+          <div class="projects" role="region" aria-label="Projects by category">
+            <div class="proj-col" id="highschool">
+              <h3>High School</h3>
+
+              <div class="project">
+                <a href="#" target="_blank" rel="noopener noreferrer">Robotics Club — Regional Competition</a>
+                <p>Team lead for an autonomous robot that navigated a dynamic obstacle course. Focus: mechanical design and PID-based steering control.</p>
+                <div class="tags">
+                  <span class="tag">CAD</span>
+                  <span class="tag">Control</span>
+                  <span class="tag">Leadership</span>
+                </div>
+              </div>
+
+              <div class="project">
+                <a href="#" target="_blank" rel="noopener noreferrer">Science Olympiad — Device Design</a>
+                <p>Designed a compact mechanical linkage for a timed event; optimized for weight and repeatability. Earned state-level placement.</p>
+                <div class="tags">
+                  <span class="tag">Mechanisms</span>
+                  <span class="tag">Optimization</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-col" id="programming">
+              <h3>Programming</h3>
+
+              <div class="project">
+                <a href="https://jrschappert.github.io/p2p-mesh-sharing/" target="_blank" rel="noopener noreferrer">P2P Mesh Sharing — demo</a>
+                <p>Peer-to-peer mesh file-sharing demo (static web demo). Useful reference for decentralized file exchange approaches.</p>
+                <div class="tags">
+                  <span class="tag">Web</span>
+                  <span class="tag">Networking</span>
+                </div>
+              </div>
+
+              <div class="project">
+                <a href="https://github.com/ajpieroni/316Heartcoded-Web-App" target="_blank" rel="noopener noreferrer">Heartcoded Web App</a>
+                <p>Web application repository demonstrating interactive UI and student project workflows. (Repository link)</p>
+                <div class="tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Web App</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-col" id="mechanical">
+              <h3>Mechanical Engineering</h3>
+
+              <div class="project">
+                <span style="font-weight:600; color:var(--accent)">Duke Humanoid V1 CAD</span>
+                <p>CAD models and assemblies for the Duke Humanoid V1 platform. (Private / unpublished — contact for access or provide a link to make it public.)</p>
+                <div class="tags">
+                  <span class="tag">CAD</span>
+                  <span class="tag">Assembly</span>
+                  <span class="tag">Prototyping</span>
+                </div>
+              </div>
+
+              <div class="project">
+                <span style="font-weight:600; color:var(--accent)">Duke Humanoid V2 CAD</span>
+                <p>Second-generation CAD for an iterative humanoid platform. (Private / unpublished — contact for access or provide a link to make it public.)</p>
+                <div class="tags">
+                  <span class="tag">CAD</span>
+                  <span class="tag">Design Iteration</span>
+                  <span class="tag">Manufacturability</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <span class="muted">© <span id="year"></span> Jacob W. Lee</span>
+        </footer>
+      </div>
     </div>
-
-    <footer>
-      © <span id="year"></span> Jacob W. Lee
-    </footer>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Insert current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Quick keyboard shortcut: press E to email (non-intrusive)
+    (function(){
+      function onKey(e){
+        if(!e.metaKey && !e.ctrlKey && !e.altKey && e.key && e.key.toLowerCase() === 'e'){
+          window.location.href = 'mailto:jacob.w.lee@duke.edu';
+        }
+      }
+      document.addEventListener('keydown', onKey);
+    }());
   </script>
 </body>
 </html>
