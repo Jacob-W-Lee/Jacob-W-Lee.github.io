@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Projects — Jacob W. Lee</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <header class="navbar card fade-in" style="animation-delay:.05s">
+      <a class="brand" href="index.html">
+        <!-- <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0b1a2a"/><path d="M6 12c2-3 10-3 12 0" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/></svg> -->
+        <h1>Jacob W. Lee</h1>
+      </a>
+
+      <nav>
+        <div class="navlinks">
+          <a href="index.html">Home</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="research.html">Research</a>
+          <a href="experience.html">Experience</a>
+          <a href="assets/Jacob-W-Lee-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+
+          <a class="icon-btn" href="https://github.com/Jacob-W-Lee" target="_blank" aria-label="GitHub">
+            <img class="icon-inline" src="assets/github.svg" alt="GitHub" aria-hidden="true"/>
+          </a>
+
+          <a class="icon-btn" href="https://www.linkedin.com/in/jacob-lee-973a761/" target="_blank" aria-label="LinkedIn">
+            <img class="icon-inline" src="assets/linkedin.png" alt="LinkedIn" aria-hidden="true"/>
+          </a>
+        </div>
+
+        <button class="hamburger" aria-label="Open menu" id="hamburgerBtnProjects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="1.6" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </nav>
+
+      <div class="mobile-menu" id="mobileMenuProjects" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="experience.html">Experience</a>
+        <a href="assets/Jacob-W-Lee-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        <a href="https://github.com/Jacob-W-Lee" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/jacob-lee-973a761/" target="_blank">LinkedIn</a>
+      </div>
+    </header>
+
+    <main class="card fade-in" style="margin-top:1rem; animation-delay:.12s">
+      <a href="index.html" style="color:var(--muted); text-decoration:none; font-weight:600;">← Back to Home</a>
+      <h1 style="margin-top:.6rem">Projects</h1>
+
+      <section style="margin-top:1rem">
+        <h2>Programming</h2>
+        <div class="project-grid" id="programmingGrid">
+          <!-- dynamic project cards will be injected here by JS -->
+        </div>
+      </section>
+
+      <section style="margin-top:1.25rem">
+        <h2>Mechanical Engineering</h2>
+        <div class="project-grid" id="mechanicalGrid" style="margin-top:.6rem">
+          <!-- dynamic project cards will be injected here by JS -->
+        </div>
+      </section>
+
+      <div class="footer">© <span id="year"></span> Jacob W. Lee</div>
+    </main>
+  </div>
+
+  <script>
+    // Projects are loaded from /assets/projects.json (fallback inline if missing)
+    async function loadAndRenderProjects(){
+      let projectData = [];
+      try{
+        const resp = await fetch('assets/projects.json');
+        if(!resp.ok) throw new Error('projects.json not found');
+        projectData = await resp.json();
+      }catch(e){
+        console.warn('Could not load projects.json — falling back to inline data. Error:', e);
+        projectData = [
+          {"id":"p2p","title":"P2P Mesh Sharing — Demo","year":2025,"category":"Programming","thumb":"assets/p2p.png","description":"Peer-to-peer mesh file-sharing demonstration exploring decentralized networking concepts.","tags":["Networking","Web"],"resources":[]},
+          {"id":"heartcoded","title":"Heartcoded Web App","year":2023,"category":"Programming","thumb":"assets/heartcoded-thumb.png","description":"Dating app built as a collaborative student software project.","tags":["JavaScript","Web App"],"resources":[]},
+          {"id":"textual","title":"Textual Analysis of Economic Speeches (Agriculture)","year":2023,"category":"Programming","thumb":"assets/textual-analysis-thumb.png","description":"NLP pipeline analyzing sentiment and thematic structure in AAEA invited speeches using LDA.","tags":["Python","NLP"],"resources":[]},
+          {"id":"highway","title":"Highway Shortest Path Finder","year":2022,"category":"Programming","thumb":"assets/highway-path-thumb.png","description":"Implemented Dijkstra to compute optimal routes across large-scale highway networks.","tags":["Algorithms","Graphs"],"resources":[]},
+          {"id":"autocomplete","title":"Autocomplete Engine","year":2022,"category":"Programming","thumb":"assets/autocomplete-thumb.png","description":"Custom trie-based predictive text system supporting prefix scoring and query optimization.","tags":["Data Structures","C++"],"resources":[]},
+          {"id":"kvcache","title":"KV Cache Implementation","year":2023,"category":"Programming","thumb":"assets/kv-cache-thumb.png","description":"Lightweight key-value caching system.","tags":["Systems","Performance"],"resources":[]},
+          {"id":"reverse_c","title":"C Reverse Engineering Project","year":2023,"category":"Programming","thumb":"assets/reverse-engineering-thumb.png","description":"Reverse engineering obfuscated C binaries to recover program behavior and control flow.","tags":["C","Reverse Engineering"],"resources":[]},
+          {"id":"lmc_x4","title":"LMC X-4 Project","year":2022,"category":"Programming","thumb":"assets/lmc-x4-thumb.png","description":"Selected to assist Dr. Fred Lang (HCC Department Chair of Mathematics) with “A Study of the Variability of LMC X-4”—research into the phenomenon of neutron stars. Responsibilities: weekly one-on-one meetings, reading previous studies, analyzing data. Presented at HCC's Scholars Symposium and Maryland Collegiate STEM Conference.","tags":["MATLAB","Data Analysis"],"resources":[]},
+
+          {"id":"duke_v1","title":"Duke Humanoid V1 CAD","year":2024,"category":"Mechanical","thumb":"assets/duke-v1-thumb.png","description":"Mechanical CAD for the Duke Humanoid V1 platform. (Private / internal)","tags":["CAD","Mechanisms"],"resources":[]},
+          {"id":"duke_v2","title":"Duke Humanoid V2 CAD","year":2025,"category":"Mechanical","thumb":"assets/duke-v2-thumb.png","description":"Second-generation humanoid CAD focusing on manufacturability and modular actuators. (Private / internal)","tags":["CAD","Design Iteration"],"resources":[]},
+          {"id":"pump_base","title":"Pump Base Project","year":2025,"category":"Mechanical","thumb":"assets/pump-base-thumb.png","description":"Designed and manufactured a pump mounting base optimizing vibration damping and load distribution.","tags":["Manufacturing","Design"],"resources":[]},
+          {"id":"putterinko","title":"Putterinko Project","year":2025,"category":"Mechanical","thumb":"assets/putterinko-thumb.png","description":"Playful mechanical system combining plinko with minigolf.","tags":["Mechanisms","Fabrication"],"resources":[]},
+          {"id":"glenelg","title":"Glenelg Crystal Nanolab","year":2022,"category":"Mechanical","thumb":"assets/glenelg-nanolab-thumb.png","description":"Designed a small laboratory for crystal growth experiments in space.","tags":["CAD", "Nanotech","Research"],"resources":[]}
+        ];
+      }
+
+      // Sort by year desc
+      projectData.sort((a,b)=> b.year - a.year || a.title.localeCompare(b.title));
+
+      const programmingSection = document.getElementById('programmingGrid');
+      const mechSection = document.getElementById('mechanicalGrid');
+
+      programmingSection.innerHTML = '';
+      mechSection.innerHTML = '';
+
+      function makeCard(p){
+        const art = document.createElement('article');
+        art.className = 'project-card';
+
+        // Create the image element but only keep it if it successfully loads.
+        const img = document.createElement('img');
+        img.className = 'thumb';
+        img.src = p.thumb || '';
+        img.alt = p.title + ' thumbnail';
+        img.loading = 'lazy';
+
+        // If the image fails to load, remove it from the DOM so no broken icon shows.
+        img.onerror = function(){
+          // Remove the image element and any reference to it so it won't show.
+          if(img && img.parentNode) img.parentNode.removeChild(img);
+        };
+
+        // If it loads fine, nothing to do; if it fails, onerror will remove it.
+        // Append image first (it will be removed automatically on error).
+        art.appendChild(img);
+
+        const div = document.createElement('div');
+        const title = document.createElement('div');
+        title.style.fontWeight = '700';
+        title.style.color = 'var(--accent)';
+        title.innerHTML = `${p.title} — <span class="date">${p.year}</span>`;
+        div.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.style.margin = '.4rem 0 0 0';
+        desc.style.color = '#dbe7ff';
+        desc.textContent = p.description;
+        div.appendChild(desc);
+
+        const tags = document.createElement('div');
+        tags.className = 'tags';
+        p.tags.forEach(t=>{ const s = document.createElement('span'); s.className='tag'; s.textContent=t; tags.appendChild(s);});
+        div.appendChild(tags);
+
+        const res = document.createElement('div');
+        res.className = 'resources';
+        res.style.marginTop = '0.5rem';
+        res.innerHTML = buildResourceHTML(p);
+        div.appendChild(res);
+
+        art.appendChild(div);
+        return art;
+      }
+
+      function buildResourceHTML(p){
+        if(!p.resources || p.resources.length===0) return 'Resources: <em>none</em>';
+        return 'Resources: ' + p.resources.map(r=>{
+          if(r.type==='link') return `<a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label||r.url}</a>`;
+          if(r.type==='slide') return `<a href="${r.url}" target="_blank">Slides</a>`;
+          if(r.type==='video') return `<a href="${r.url}" target="_blank">Video</a>`;
+          if(r.type==='image') return `<a href="${r.url}" target="_blank">Image</a>`;
+          return r.label||r.url;
+        }).join(' | ');
+      }
+
+      projectData.forEach(p => {
+        const card = makeCard(p);
+        if(p.category === 'Programming') programmingSection.appendChild(card);
+        if(p.category === 'Mechanical') mechSection.appendChild(card);
+      });
+    }
+
+    // mobile hamburger
+    const hbProj = document.getElementById('hamburgerBtnProjects');
+    const mobileProj = document.getElementById('mobileMenuProjects');
+    let projOpen = false;
+    hbProj.addEventListener('click', () => {
+      projOpen = !projOpen;
+      mobileProj.classList.toggle('open', projOpen);
+      mobileProj.setAttribute('aria-hidden', !projOpen);
+    });
+
+    // initial render
+    document.getElementById('year').textContent = new Date().getFullYear();
+    loadAndRenderProjects();
+  </script>
+</body>
+</html>
